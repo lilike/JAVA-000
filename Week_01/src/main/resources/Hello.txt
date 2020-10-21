@@ -1,0 +1,100 @@
+Classfile /C:/Users/lyric/Desktop/���ʹ�ѧ/Java����ѵ��Ӫ/JAVA-000/Week_01/target/classes/com/lilike/homework/Hello.class  表示文件名
+  Last modified 2020-10-16; size 557 bytes  // 上次修改时间
+  MD5 checksum 042b6e69e52dacb908c4db1586847382 // 标识
+  Compiled from "Hello.java"   // 编译的文件名
+public class com.lilike.homework.Hello  // 全类名
+  minor version: 0  // 版本号
+  major version: 49 // 版本号
+  flags: ACC_PUBLIC, ACC_SUPER
+Constant pool:  // 常量池子 里面有类型 有构造方法 有行表 有变量名
+   #1 = Methodref          #7.#28         // java/lang/Object."<init>":()V
+   #2 = Double             2.0d
+   #4 = Long               3l
+   #6 = Class              #29            // com/lilike/homework/Hello
+   #7 = Class              #30            // java/lang/Object
+   #8 = Utf8               <init>
+   #9 = Utf8               ()V
+  #10 = Utf8               Code
+  #11 = Utf8               LineNumberTable
+  #12 = Utf8               LocalVariableTable
+  #13 = Utf8               this
+  #14 = Utf8               Lcom/lilike/homework/Hello;
+  #15 = Utf8               main
+  #16 = Utf8               ([Ljava/lang/String;)V
+  #17 = Utf8               i
+  #18 = Utf8               I
+  #19 = Utf8               args
+  #20 = Utf8               [Ljava/lang/String;
+  #21 = Utf8               a
+  #22 = Utf8               b
+  #23 = Utf8               D
+  #24 = Utf8               c
+  #25 = Utf8               J
+  #26 = Utf8               SourceFile
+  #27 = Utf8               Hello.java
+  #28 = NameAndType        #8:#9          // "<init>":()V
+  #29 = Utf8               com/lilike/homework/Hello
+  #30 = Utf8               java/lang/Object
+{
+  public com.lilike.homework.Hello(); // 构造方法
+    descriptor: ()V
+    flags: ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1  // 需要一个操作栈 一个临时变量slot 参数数目
+         0: aload_0                  // 加载临时变量表
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V  // 执行obj的构造方法
+         4: return                   // 方法返回
+      LineNumberTable:              // 行数表
+        line 8: 0                   //
+      LocalVariableTable:           // 本地变量表  开始是0 长度是5 槽位是0 名称是this,也就是自己这个对象,所以槽位还是1
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lcom/lilike/homework/Hello;
+
+  public static void main(java.lang.String[]);   // 方法名
+    descriptor: ([Ljava/lang/String;)V           // 描述
+    flags: ACC_PUBLIC, ACC_STATIC               // flag
+    Code:
+      stack=4, locals=7, args_size=1         // 需要操作数栈,本地变量表的数量是7,参数的大小是1
+         0: iconst_1                         // 一个int的常量
+         1: istore_1                         // 保存到临时变量表里面
+         2: ldc2_w        #2                  // double 2.0d  // 一个double的常量
+         5: dstore_2                             // 把double常量保存到临时变量表里面
+         6: ldc2_w        #4                  // long 3l       // long的常量
+         9: lstore        4                // 保存到临时变量表里面
+        11: iload_1                         // 加载int出来
+        12: iconst_2                        // 有一个常量是2
+        13: if_icmple     19                 // 进行比较
+        16: iinc          1, 1               // 自增
+        19: iconst_0                      // 常量是0
+        20: istore        6               // 存入到临时变量表
+        22: iload         6                // 加载零食变量表
+        24: i2l                            // i转换为long
+        25: lload         4                 // 加载l
+        27: lcmp                        // 比较
+        28: ifge          41              // 进行比较
+        31: dload_2
+        32: dconst_1
+        33: ddiv                         // 触发
+        34: dstore_2
+        35: iinc          6, 1
+        38: goto          22              // 跳转
+        41: return
+      LineNumberTable:
+        line 12: 0
+        line 13: 2
+        line 14: 6
+        line 16: 11
+        line 17: 16
+        line 20: 19
+        line 21: 31
+        line 20: 35
+        line 24: 41
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           22      19     6     i   I
+            0      42     0  args   [Ljava/lang/String;
+            2      40     1     a   I
+            6      36     2     b   D
+           11      31     4     c   J
+}
+SourceFile: "Hello.java"

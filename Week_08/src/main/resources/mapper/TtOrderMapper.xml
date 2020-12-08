@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lilike.demo.homework01.mapper.TtOrderMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.lilike.demo.homework01.entity.TtOrder">
+        <id column="id" property="id" />
+        <result column="account_id" property="accountId" />
+        <result column="goods_id" property="goodsId" />
+        <result column="pay_amount" property="payAmount" />
+        <result column="pay_status" property="payStatus" />
+        <result column="pay_time" property="payTime" />
+        <result column="refund_time" property="refundTime" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <insert id="insertData">
+        INSERT INTO tt_order  ( account_id, goods_id, pay_amount, pay_status, pay_time, refund_time, create_time, update_time )  VALUES
+        (
+            #{bean.accountId},
+            #{bean.goodsId},
+            #{bean.payAmount},
+            #{bean.payStatus},
+            #{bean.payTime},
+            #{bean.refundTime},
+            #{bean.createTime},
+            #{bean.updateTime}
+        )
+
+    </insert>
+
+</mapper>

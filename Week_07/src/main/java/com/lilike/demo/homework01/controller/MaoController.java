@@ -1,4 +1,4 @@
-package com.lilike.demo.homework02.controller;
+package com.lilike.demo.homework01.controller;
 
 
 import com.lilike.demo.homework02.entity.Mao;

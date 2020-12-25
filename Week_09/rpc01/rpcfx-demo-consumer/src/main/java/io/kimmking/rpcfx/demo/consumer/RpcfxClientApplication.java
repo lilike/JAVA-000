@@ -5,18 +5,15 @@ import io.kimmking.rpcfx.api.Filter;
 import io.kimmking.rpcfx.api.LoadBalancer;
 import io.kimmking.rpcfx.api.Router;
 import io.kimmking.rpcfx.api.RpcfxRequest;
+import io.kimmking.rpcfx.api.impl.StandardFilter;
+import io.kimmking.rpcfx.api.impl.StandardLoadBalancer;
+import io.kimmking.rpcfx.api.impl.StandardRouter;
 import io.kimmking.rpcfx.client.Rpcfx;
-import io.kimmking.rpcfx.demo.api.Order;
 import io.kimmking.rpcfx.demo.api.OrderService;
-import io.kimmking.rpcfx.demo.api.User;
 import io.kimmking.rpcfx.demo.api.UserService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
@@ -36,9 +33,10 @@ public class RpcfxClientApplication   {
 
 
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 
 		ConfigurableApplicationContext run = SpringApplication.run(RpcfxClientApplication.class, args);
+
 
 		// 首先扫描包获取到特定注解的对象
 
@@ -55,7 +53,7 @@ public class RpcfxClientApplication   {
 			Class clazz = handlerMap.get(s);
 
 			// 创建一个动态代理类
-			Object o = Rpcfx.create(clazz, "http://localhost:8080/");
+			Object o = Rpcfx.createFromRegistry(clazz, "localhost:2181", new StandardRouter(), new StandardLoadBalancer(), new StandardFilter());
 			run.getBeanFactory().registerSingleton(clazz.getName(),o);
 		}
 

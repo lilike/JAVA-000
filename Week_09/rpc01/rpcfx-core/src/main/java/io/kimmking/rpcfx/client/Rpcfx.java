@@ -8,6 +8,10 @@ import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
+import org.apache.curator.RetryPolicy;
+import org.apache.curator.framework.CuratorFramework;
+import org.apache.curator.framework.CuratorFrameworkFactory;
+import org.apache.curator.retry.ExponentialBackoffRetry;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationHandler;
@@ -18,23 +22,21 @@ import java.util.List;
 
 public final class Rpcfx {
 
-    static {
-        ParserConfig.getGlobalInstance().addAccept("io.kimmking");
-    }
-
-    public static <T, filters> T createFromRegistry(final Class<T> serviceClass, final String zkUrl, Router router, LoadBalancer loadBalance, Filter filter) {
+    public static <T, filters> T createFromRegistry(final Class<T> serviceClass, final String zkUrl, Router router, LoadBalancer loadBalance, Filter filter) throws Exception {
 
         // 加filte之一
 
         // curator Provider list from zk
-        List<String> invokers = new ArrayList<>();
         // 1. 简单：从zk拿到服务提供的列表
         // 2. 挑战：监听zk的临时节点，根据事件更新这个list（注意，需要做个全局map保持每个服务的提供者List）
+
+        List<String> invokers = CuratorClient.getClient().getChildren().forPath("/" + serviceClass.getName());
 
         List<String> urls = router.route(invokers);
 
         String url = loadBalance.select(urls); // router, loadbalance
-
+        String[] s = url.split("_");
+        url = "http://" + s[0] + ":" + s[1];
         return (T) create(serviceClass, url, filter);
 
     }
